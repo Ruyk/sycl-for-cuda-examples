@@ -18,7 +18,7 @@ set(SYCL_LIB "${SYCL_ROOT}/lib/libsycl.so")
 set(SYCL_FLAGS "-fsycl" 
       "-fsycl-targets=nvptx64-nvidia-cuda-sycldevice,spir64-unknown-linux-sycldevice"
       "-fsycl-unnamed-lambda"
-      "-Xsycl-target-backend=nvptx64-nvidia-cuda-sycldevice" "-cuda-arch=${SYCL_CUDA_ARCH}")
+      "-Xsycl-target-backend=nvptx64-nvidia-cuda-sycldevice" "--cuda-arch=${SYCL_CUDA_ARCH}")
 
 # Build the CUDA code
 add_executable(vector_addition vector_addition.cu)
