@@ -8,11 +8,17 @@ if (NOT SYCL_ROOT)
   message(FATAL_ERROR "No SYCL installation detected")
 endif(NOT SYCL_ROOT)
 
+if (NOT SYCL_CUDA_ARCH)
+  set(SYCL_CUDA_ARCH "sm_50")
+endif(NOT SYCL_CUDA_ARCH)
+message(STATUS "Using CUDA ARCH version ${SYCL_CUDA_ARCH}")
+
 set(SYCL_INCLUDE_DIR "${SYCL_ROOT}/lib/clang/11.0.0/include/")
 set(SYCL_LIB "${SYCL_ROOT}/lib/libsycl.so")
 set(SYCL_FLAGS "-fsycl" 
       "-fsycl-targets=nvptx64-nvidia-cuda-sycldevice,spir64-unknown-linux-sycldevice"
-      "-fsycl-unnamed-lambda")
+      "-fsycl-unnamed-lambda"
+      "-Xsycl-target-backend=nvptx64-nvidia-cuda-sycldevice" "-cuda-arch=${SYCL_CUDA_ARCH}")
 
 # Build the CUDA code
 add_executable(vector_addition vector_addition.cu)

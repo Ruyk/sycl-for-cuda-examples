@@ -69,6 +69,8 @@ In this case, we will build the example for both NVPTX and SPIR64.
 This means the kernel for the vector addition will be compiled for both
 backends, and runtime selection to the right queue will decide which variant
 to use.
+Optionally, the `SYCL_CUDA_ARCH` flag can be passed on to generate PTX
+code for a specific CUDA architecture. The default vale is `sm_50`.
 
 Note the project is built with C++17 support, which enables the usage of
 [deduction guides](https://github.com/intel/llvm/blob/sycl/sycl/doc/extensions/deduction_guides/SYCL_INTEL_deduction_guides.asciidoc) to reduce the number of template parameters used.
