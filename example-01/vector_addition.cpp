@@ -60,7 +60,9 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  sycl::queue myQueue{CUDASelector()};
+  // sycl::queue myQueue{CUDASelector()};
+  sycl::queue myQueue;
+  sycl::queue cpuQueue{sycl::cpu_selector()};
 
   // Command Group creation
   auto cg = [&](sycl::handler &h) {
@@ -76,7 +78,8 @@ int main(int argc, char *argv[]) {
   };
 
   myQueue.submit(cg);
-
+  cpuQueue.submit(cg);
+  
   {
     const auto write_t = sycl::access::mode::read;
     auto h_c = bufC.get_access<write_t>();
