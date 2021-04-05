@@ -28,3 +28,11 @@ target_link_libraries(sycl_vector_addition PUBLIC ${SYCL_FLAGS})
 target_include_directories(sycl_vector_addition PUBLIC ${SYCL_INCLUDE_DIR})
 target_link_libraries(sycl_vector_addition PUBLIC ${SYCL_LIB})
 
+# Build the SYCL code
+add_executable (usm_vector_addition vector_addition_usm.cpp)
+target_compile_features(usm_vector_addition PUBLIC cxx_std_17)
+target_compile_options(usm_vector_addition PUBLIC ${SYCL_FLAGS})
+target_link_libraries(usm_vector_addition PUBLIC ${SYCL_FLAGS})
+target_include_directories(usm_vector_addition PUBLIC ${SYCL_INCLUDE_DIR})
+target_link_libraries(usm_vector_addition PUBLIC ${SYCL_LIB})
+
